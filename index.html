@@ -28,9 +28,13 @@
       --card-bg: #ffffff;
       --text-main: #222;
       --text-muted: #666;
+      --radius: 12px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       margin: 0;
@@ -42,15 +46,12 @@
     }
 
     header {
-      padding: 16px 20px;
+      padding: 12px 16px;
       background: #ffffff;
       border-bottom: 1px solid #e3e4ea;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      flex-direction: column;
+      gap: 4px;
     }
 
     header .logo {
@@ -68,29 +69,30 @@
     }
 
     main {
-      max-width: 900px;
+      width: 100%;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 12px 12px 24px;
     }
 
     .hero {
       background: linear-gradient(135deg, #e3f2ff, #ffffff);
-      border-radius: 12px;
-      padding: 20px 16px;
-      margin-bottom: 22px;
+      border-radius: var(--radius);
+      padding: 14px 12px;
+      margin-bottom: 18px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: 22px;
+      font-size: 18px;
     }
 
     .hero p {
       margin: 0;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
@@ -100,7 +102,7 @@
       gap: 6px;
       background: rgba(0, 123, 255, 0.08);
       color: var(--primary);
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 600;
@@ -108,34 +110,34 @@
     }
 
     .section-title {
-      font-size: 18px;
-      margin: 24px 0 8px;
+      font-size: 16px;
+      margin: 18px 2px 6px;
     }
 
     .section-subtitle {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin: 0 2px 10px;
     }
 
     .ad-block {
       background: var(--card-bg);
-      border-radius: 10px;
-      padding: 10px;
+      border-radius: var(--radius);
+      padding: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .offers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .offer-card {
       background: var(--card-bg);
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: var(--radius);
+      padding: 10px 10px 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
@@ -150,17 +152,17 @@
     }
 
     .offer-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
     }
 
     .offer-desc {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
     .offer-cta {
-      margin-top: 8px;
+      margin-top: 6px;
       align-self: flex-start;
       padding: 7px 12px;
       border-radius: 999px;
@@ -174,24 +176,49 @@
       gap: 4px;
     }
 
-    footer {
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      padding: 16px 0 24px;
+    .offer-cta span {
+      font-size: 14px;
     }
 
     .highlight {
       border-left: 4px solid #ff9800;
-      padding-left: 12px;
-      margin-bottom: 24px;
+      padding-left: 10px;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 600px) {
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 8px 12px 18px;
+    }
+
+    /* Ajustes para telas maiores */
+    @media (min-width: 640px) {
       header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero {
+        padding: 18px 16px;
+      }
+
+      .hero h1 {
+        font-size: 20px;
+      }
+
+      main {
+        padding: 16px 16px 32px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .offers-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
       }
     }
   </style>
@@ -199,14 +226,13 @@
 
 <body>
 <header>
-  <div>
-    <div class="logo">Auto <span>Coupons</span></div>
-    <div class="tagline">Mais descontos com cupons automáticos</div>
-  </div>
+  <div class="logo">Auto <span>Coupons</span></div>
+  <div class="tagline">Mais descontos com cupons automáticos</div>
 </header>
 
 <main>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">
       <span>💸</span> Cupons + Ofertas Exclusivas
@@ -225,7 +251,7 @@
     <div class="offer-tag">Oferta Especial</div>
     <div class="offer-title">Produtos mais vendidos do dia no Mercado Livre</div>
     <div class="offer-desc">
-      Página com itens muito procurados e com grande chance de aparecerem com bons descontos e cupons.
+      Página com itens muito procurados e com grande chance de aparecerem com bons descontos.
     </div>
     <a class="offer-cta"
        href="https://mercadolivre.com/sec/OFERTAS_DO_DIA"
@@ -234,21 +260,22 @@
     </a>
   </section>
 
-  <!-- BLOCO ADSENSE 1 -->
+  <!-- ADSENSE 1: DISPLAY RESPONSIVO -->
   <h2 class="section-title">Anúncio patrocinado</h2>
   <div class="ad-block">
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-8571245849339783"
-         data-ad-slot="SEU_SLOT_1"
+         data-ad-slot="9055851649"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
+  <!-- OFERTAS RECOMENDADAS -->
   <h2 class="section-title">Ofertas recomendadas</h2>
   <p class="section-subtitle">
-    Categorias populares no Mercado Livre que frequentemente combinam bem com cupons automáticos.
+    Categorias populares no Mercado Livre que frequentemente combinam com cupons automáticos.
   </p>
 
   <section class="offers-grid">
@@ -304,15 +331,15 @@
     5️⃣ Depois, volte aqui para ofertas extras.
   </p>
 
-  <!-- BLOCO ADSENSE 2 -->
+  <!-- ADSENSE 2: IN-ARTICLE -->
   <h2 class="section-title">Mais anúncios</h2>
   <div class="ad-block">
     <ins class="adsbygoogle"
-         style="display:block"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
          data-ad-client="ca-pub-8571245849339783"
-         data-ad-slot="SEU_SLOT_2"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
+         data-ad-slot="2968137203"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
